@@ -3,7 +3,9 @@
   hosts: routers
   # gather_facts: false
   tasks:
-    - debug: msg="Hey there"
+    - name: Print data
+      ansible.builtin.debug:
+        msg: "Hey there"
     - name: Gather IOS facts
       cisco.ios.ios_facts:
         gather_subset: all
