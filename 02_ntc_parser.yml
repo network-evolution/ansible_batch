@@ -8,7 +8,7 @@
     #     name: ntc-templates
 
     - name: Install using command
-      ansible.builtin.command: pip install ntc-templates
+      ansible.builtin.command: pip3 install ntc-templates
 
     # - name: Install using command
     #   ansible.builtin.command: pip list
