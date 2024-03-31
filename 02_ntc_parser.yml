@@ -14,7 +14,7 @@
       ansible.builtin.command: pip list
 
     - name: Install using command
-      ansible.builtin.command: which python
+      ansible.builtin.command: which python3
       ignore_errors: true
 
     - debug: msg="{{ ansible_playbook_python }}" 
