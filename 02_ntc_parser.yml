@@ -3,7 +3,7 @@
   hosts: r2
   gather_facts: false
   vars:
-    ansible_python_interpreter: "/usr/bin/python3.9"
+    ansible_python_interpreter: "{{ ansible_playbook_python }}"
   tasks:
     # - name: Install Package
     #   ansible.builtin.pip:
