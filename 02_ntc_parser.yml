@@ -5,59 +5,67 @@
   vars:
     ansible_python_interpreter: "{{ ansible_playbook_python }}"
   tasks:
-    - name: Install Package
-      ansible.builtin.pip:
-        name: ntc-templates
-      delegate_to: localhost
 
-    - name: Install Package
-      ansible.builtin.pip:
-        name: netaddr
-      # delegate_to: localhost
-
-    - name: Install using command
-      ansible.builtin.command: pip3 install ntc-templates
-      delegate_to: localhost
-
-    - debug: msg="{{ '192.168.0.0' | ansible.utils.ipaddr }}"
-
-    - name: Interface Config
-      cisco.ios.ios_interfaces:
-        state: gathered
-      register: intf_config
-
-    - name: Print intf config
-      ansible.builtin.debug:
+    - name: Print info
+      debug:
         msg:
-          - "{{ intf_config }}"
-
-    - name: Print enabled True interfaces
-      ansible.builtin.debug:
-        msg:
-          - '{{ intf_config.gathered | json_query("[?description]") }}' ## prints interfaces with description
-    
-    - name: List Pip
-      ansible.builtin.command: pip list
-
-    - name: check rpm
-      ansible.builtin.command: rpm -ql python
-      ignore_errors: true
+          - "{{ ansible_config_file }}"
+          - "{{ ansible_search_path }}"
 
     - name: Check ansible version
       ansible.builtin.command: ansible --version
       ignore_errors: true
+############################################################################
+    # - name: Install Package
+    #   ansible.builtin.pip:
+    #     name: ntc-templates
+    #   delegate_to: localhost
 
-    - debug: msg="{{ ansible_playbook_python }}" 
+    # - name: Install Package
+    #   ansible.builtin.pip:
+    #     name: netaddr
+    #   # delegate_to: localhost
 
-    - name: Ansible CLI Parse
-      ansible.utils.cli_parse:
-        command: "show ip interface brief"
-        parser:
-          name: ansible.netcommon.ntc_templates
-        set_fact: sh_ver
-      register: show_ver_parser
+    # - name: Install using command
+    #   ansible.builtin.command: pip3 install ntc-templates
+    #   delegate_to: localhost
 
-    - name: Print sh_ver
-      ansible.builtin.debug:
-        msg: 
-          - "{{ sh_ver }}"
+    # - debug: msg="{{ '192.168.0.0' | ansible.utils.ipaddr }}"
+
+    # - name: Interface Config
+    #   cisco.ios.ios_interfaces:
+    #     state: gathered
+    #   register: intf_config
+
+    # - name: Print intf config
+    #   ansible.builtin.debug:
+    #     msg:
+    #       - "{{ intf_config }}"
+
+    # - name: Print enabled True interfaces
+    #   ansible.builtin.debug:
+    #     msg:
+    #       - '{{ intf_config.gathered | json_query("[?description]") }}' ## prints interfaces with description
+    
+    # - name: List Pip
+    #   ansible.builtin.command: pip list
+
+
+    # - name: Check ansible version
+    #   ansible.builtin.command: ansible --version
+    #   ignore_errors: true
+
+    # - debug: msg="{{ ansible_playbook_python }}" 
+
+    # - name: Ansible CLI Parse
+    #   ansible.utils.cli_parse:
+    #     command: "show ip interface brief"
+    #     parser:
+    #       name: ansible.netcommon.ntc_templates
+    #     set_fact: sh_ver
+    #   register: show_ver_parser
+
+    # - name: Print sh_ver
+    #   ansible.builtin.debug:
+    #     msg: 
+    #       - "{{ sh_ver }}"
