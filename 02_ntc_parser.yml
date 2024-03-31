@@ -14,6 +14,21 @@
       ansible.builtin.command: pip3 install ntc-templates
       delegate_to: localhost
 
+    - name: Interface Config
+      cisco.ios.ios_interfaces:
+        state: gathered
+      register: intf_config
+
+    - name: Print intf config
+      ansible.builtin.debug:
+        msg:
+          - "{{ intf_config }}"
+
+    - name: Print enabled True interfaces
+      ansible.builtin.debug:
+        msg:
+          - '{{ intf_config.gathered | json_query("[?description]") }}' ## prints interfaces with description
+    
     - name: List Pip
       ansible.builtin.command: pip list
 
