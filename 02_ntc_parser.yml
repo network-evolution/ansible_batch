@@ -10,12 +10,17 @@
         name: ntc-templates
       delegate_to: localhost
 
+    - name: Install Package
+      ansible.builtin.pip:
+        name: netaddr
+      delegate_to: localhost
+
     - name: Install using command
       ansible.builtin.command: pip3 install ntc-templates
       delegate_to: localhost
 
     - debug: msg="{{ '192.168.0.0' | ansible.utils.ipaddr }}"
-    
+
     - name: Interface Config
       cisco.ios.ios_interfaces:
         state: gathered
