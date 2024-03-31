@@ -12,25 +12,29 @@
           - "{{ ansible_config_file }}"
           - "{{ ansible_search_path }}"
 
-    - name: Check ansible version
-      ansible.builtin.command: ansible --version
-      ignore_errors: true
+    # - name: Check ansible version
+    #   ansible.builtin.command: ansible --version
+    #   ignore_errors: true
+
+    - name: Install Package
+      ansible.builtin.pip:
+        name: netaddr
+      # delegate_to: localhost
+      
+    - debug: msg="{{ '192.168.0.0' | ansible.utils.ipaddr }}"
 ############################################################################
     # - name: Install Package
     #   ansible.builtin.pip:
     #     name: ntc-templates
     #   delegate_to: localhost
 
-    # - name: Install Package
-    #   ansible.builtin.pip:
-    #     name: netaddr
-    #   # delegate_to: localhost
+
 
     # - name: Install using command
     #   ansible.builtin.command: pip3 install ntc-templates
     #   delegate_to: localhost
 
-    # - debug: msg="{{ '192.168.0.0' | ansible.utils.ipaddr }}"
+
 
     # - name: Interface Config
     #   cisco.ios.ios_interfaces:
