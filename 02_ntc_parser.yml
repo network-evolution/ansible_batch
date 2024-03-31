@@ -5,19 +5,21 @@
   vars:
     ansible_python_interpreter: "{{ ansible_playbook_python }}"
   tasks:
-    # - name: Install Package
-    #   ansible.builtin.pip:
-    #     name: ntc-templates
+    - name: Install Package
+      ansible.builtin.pip:
+        name: ntc-templates
+      delegate_to: localhost
 
     - name: Install using command
       ansible.builtin.command: pip3 install ntc-templates
+      delegate_to: localhost
 
     - name: Install using command
       ansible.builtin.command: pip list
 
-    - name: Install using command
-      ansible.builtin.command: which python3
-      ignore_errors: true
+    # - name: Install using command
+    #   ansible.builtin.command: which python3
+    #   ignore_errors: true
 
     - debug: msg="{{ ansible_playbook_python }}" 
 
