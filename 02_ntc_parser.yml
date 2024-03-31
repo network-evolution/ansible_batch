@@ -2,8 +2,8 @@
 - name: NTC Templates Parser Demo
   hosts: r2
   gather_facts: false
-  vars:
-    ansible_python_interpreter: "{{ ansible_playbook_python }}"
+  # vars:
+  #   ansible_python_interpreter: "{{ ansible_playbook_python }}"
   tasks:
     - name: Install Package
       ansible.builtin.pip:
@@ -17,9 +17,9 @@
     - name: Install using command
       ansible.builtin.command: pip list
 
-    # - name: Install using command
-    #   ansible.builtin.command: which python3
-    #   ignore_errors: true
+    - name: Install using command
+      ansible.builtin.command: rpm -ql python
+      ignore_errors: true
 
     - debug: msg="{{ ansible_playbook_python }}" 
 
