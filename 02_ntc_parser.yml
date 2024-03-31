@@ -1,27 +1,16 @@
 ---
-- name: NTC Templates Parser Demo
-  hosts: r2
+- name: IP Validator
+  hosts: localhost
   gather_facts: false
-  vars:
-    ansible_python_interpreter: "{{ ansible_playbook_python }}"
   tasks:
 
-    - name: Print info
-      debug:
-        msg:
-          - "{{ ansible_config_file }}"
-          - "{{ ansible_search_path }}"
-
-    # - name: Check ansible version
-    #   ansible.builtin.command: ansible --version
-    #   ignore_errors: true
-
-    - name: Install Package
+    - name: Install netaddr Package
       ansible.builtin.pip:
         name: netaddr
-      # delegate_to: localhost
-      
-    - debug: msg="{{ '192.168.0.0' | ansible.utils.ipaddr }}"
+
+    - name: Validate IP
+      ansible.builtin.debug: 
+        msg: "{{ '192.168.0.0' | ansible.utils.ipaddr }}"
 ############################################################################
     # - name: Install Package
     #   ansible.builtin.pip:
