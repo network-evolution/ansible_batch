@@ -3,12 +3,12 @@
   hosts: r2
   gather_facts: false
   tasks:
-    - name: Install Package
-      ansible.builtin.pip:
-        name: ntc-templates
+    # - name: Install Package
+    #   ansible.builtin.pip:
+    #     name: ntc-templates
 
-    # - name: Install using command
-    #   ansible.builtin.command: pip install ntc-templates
+    - name: Install using command
+      ansible.builtin.command: pip install ntc-templates
 
     # - name: Install using command
     #   ansible.builtin.command: pip list
