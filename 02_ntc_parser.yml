@@ -14,11 +14,15 @@
       ansible.builtin.command: pip3 install ntc-templates
       delegate_to: localhost
 
-    - name: Install using command
+    - name: List Pip
       ansible.builtin.command: pip list
 
-    - name: Install using command
+    - name: check rpm
       ansible.builtin.command: rpm -ql python
+      ignore_errors: true
+
+    - name: Check ansible version
+      ansible.builtin.command: ansible --version
       ignore_errors: true
 
     - debug: msg="{{ ansible_playbook_python }}" 
