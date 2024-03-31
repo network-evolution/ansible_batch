@@ -10,14 +10,14 @@
     - name: Install using command
       ansible.builtin.command: pip3 install ntc-templates
 
-    # - name: Install using command
-    #   ansible.builtin.command: pip list
+    - name: Install using command
+      ansible.builtin.command: pip list
 
-    # - name: Install using command
-    #   ansible.builtin.command: which python
-    #   ignore_errors: true
+    - name: Install using command
+      ansible.builtin.command: which python
+      ignore_errors: true
 
-    # - debug: msg="{{ ansible_playbook_python }}" 
+    - debug: msg="{{ ansible_playbook_python }}" 
 
     - name: Ansible CLI Parse
       ansible.utils.cli_parse:
